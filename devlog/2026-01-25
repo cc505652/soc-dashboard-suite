@@ -1,0 +1,37 @@
+# Dev Log — 2026-01-25
+
+## Phase
+Phase 1 — Foundation & Schema
+
+## Work Completed
+- Created full SOC Dashboard Suite repository structure
+- Added SOC-aligned README defining scope, philosophy, and system intent
+- Defined normalized schemas for:
+  - Email telemetry
+  - Authentication telemetry
+  - Unified SOC event abstraction
+- Added architecture, detection, alerting, dashboards, playbooks, and cloud-mapping directories
+- Introduced development log (devlog/) for tracking engineering decisions
+- Fixed data directory naming inconsistency (normalized)
+
+## Key Decisions
+- Chose schema-first design to enforce evidence contracts before ingestion
+- Explicitly excluded email body inspection to avoid payload-level noise and complexity
+- Treated authentication events as behavioral signals rather than identity facts
+- Made alert explainability and investigation context first-class schema fields
+- Separated system artifacts from development logs to avoid repository clutter
+
+## Alternatives Considered
+- Starting directly with ingestion notebooks → rejected (risk of schema drift and refactors)
+- Building dashboards before detections → rejected (dashboards must reflect alert reality)
+- Introducing ML early → rejected (detection reliability and SOC constraints not yet established)
+
+## Open Questions
+- Whether attachment hashes should be promoted to first-class entities
+- How aggressively to baseline rare sender domains without inflating false positives
+- Whether to model device trust as static or adaptive context in early phases
+
+## Status
+- Phase Progress: Completed
+- Repo Health: Clean and stable
+- Next Immediate Step: Phase 2 — Email ingestion and normalization (Python notebooks)
