@@ -81,13 +81,21 @@ Dashboards & Investigation Views
 ## 🔍 What This Project Explicitly Does
 
 ✔ Defines SOC-grade schemas for email and authentication telemetry
+
 ✔ Implements ingestion and normalization with data quality guarantees
+
 ✔ Adds identity, domain, temporal, and baseline context
+
 ✔ Engineers explainable detection logic with tuning knobs
+
 ✔ Controls alert volume through gating, deduplication, and severity scoring
+
 ✔ Produces analyst-centric dashboards for triage and investigation
+
 ✔ Threat-models the SOC system itself
+
 ✔ Maps the architecture to real cloud SIEM platforms
+
 
 ---
 
