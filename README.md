@@ -94,10 +94,15 @@ Dashboards & Investigation Views
 ## 🚫 What This Project Intentionally Does NOT Do
 
 ❌ No deep learning models
+
 ❌ No accuracy / F1 / ROC-driven claims
+
 ❌ No feature ranking for its own sake
+
 ❌ No “AI SOC” marketing narratives
+
 ❌ No unrealistic assumptions about perfect data
+
 
 Any machine learning used is **minimal, interpretable, and subordinate** to SOC constraints.
 
