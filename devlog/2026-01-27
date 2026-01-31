@@ -1,0 +1,37 @@
+# Dev Log — 2026-01-27
+
+## Phase
+Phase 2 — Ingestion & Normalization (Day 2)
+
+## Work Completed
+- Added ingestion validation checks to email ingestion pipeline
+- Measured header completeness across parsed emails
+- Verified presence/absence rates for:
+  - sender_email
+  - recipient_email
+  - subject
+  - event_time
+- Inspected domain extraction quality for sender and recipient
+- Measured potential duplicate events (no removal performed)
+- Generated rejection summary statistics (initial vs valid vs dropped)
+
+## Key Decisions
+- Treated ingestion as structural validation, not behavioral cleaning
+- Chose to observe duplicates rather than remove them (duplicates may represent campaign patterns)
+- Accepted moderate header noise rather than imputing or guessing missing fields
+- Maintained strict boundary between ingestion logic and enrichment/detection logic
+
+## Alternatives Considered
+- Deduplicating emails during ingestion → rejected (may erase attack campaign signals)
+- Filling missing subjects with placeholders → rejected (would hide evidence gaps)
+- Filtering "internal-only" emails → rejected (biases baseline behavior)
+
+## Open Questions
+- Whether to extract sender display names in future for impersonation detection
+- How to model multi-recipient emails during correlation stages
+- Whether attachment metadata should be parsed from MIME structure later
+
+## Status
+- Phase Progress: Phase 2 Completed (Email Ingestion Stable)
+- Repo Health: Clean, structured, and logically layered
+- Next Immediate Step: Phase 3 — Begin context baselining (domain frequency modeling)
