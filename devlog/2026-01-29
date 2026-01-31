@@ -1,0 +1,34 @@
+# Dev Log — 2026-01-29
+
+## Phase
+Phase 3 — Context & Baselining (Day 5)
+
+## Work Completed
+- Introduced identity-level context into email telemetry
+- Derived normalized `recipient_user` identifiers from recipient_email
+- Simulated enterprise-style user role distribution (normal / admin / executive)
+- Assigned role labels consistently per user
+- Computed per-user email volume baselines
+- Classified users into volume bands (low / medium / high volume)
+- Saved enriched dataset with identity context to `data/enriched/email_with_identity_context.csv`
+
+## Key Decisions
+- Used recipient identity as primary entity for email-based behavioral modeling
+- Simulated role distribution rather than hardcoding specific individuals
+- Modeled identity context as a risk modifier, not a detection trigger
+- Treated user volume as behavioral baseline rather than anomaly detection at this stage
+
+## Alternatives Considered
+- Manual role assignment for specific Enron users → rejected (not scalable or realistic)
+- Using sender identity instead of recipient → deferred (recipient risk is more relevant for phishing scenarios)
+- Creating anomaly scores immediately → rejected (requires temporal context first)
+
+## Open Questions
+- Whether to later model sender-recipient relationship frequency
+- How to incorporate identity privilege into severity scoring logic
+- Whether to differentiate shared mailboxes vs personal mailboxes
+
+## Status
+- Phase Progress: Day 5 Completed
+- Repo Health: Stable with identity context layer added
+- Next Immediate Step: Day 6 — Temporal baselining (business hours and time-of-day behavior)
