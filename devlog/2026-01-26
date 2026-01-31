@@ -1,0 +1,40 @@
+# Dev Log — 2026-01-26
+
+## Phase
+Phase 2 — Ingestion & Normalization (Day 1)
+
+## Work Completed
+- Implemented raw email ingestion from Enron dataset (file + message format)
+- Parsed email headers using Python's email parser
+- Extracted:
+  - event_time (Date header)
+  - sender_email (From header)
+  - recipient_email (To header)
+  - subject (Subject header)
+- Normalized timestamps into datetime format
+- Derived sender and recipient domains
+- Added SOC metadata fields (event_type, ingested_at, message_id)
+- Enforced required schema fields
+- Dropped records missing critical evidence fields
+- Saved normalized dataset to `data/normalized/email_events_normalized.csv`
+
+## Key Decisions
+- Chose header parsing over preprocessed CSV to retain raw provenance
+- Excluded email body from telemetry to avoid premature content analysis
+- Treated ingestion as structural validation, not behavioral cleaning
+- Accepted moderate rejection rate to ensure evidence reliability
+
+## Alternatives Considered
+- Using pre-cleaned email CSV → rejected (less realistic, hides parsing complexity)
+- Manual dataset cleaning before ingestion → rejected (violates pipeline integrity)
+- Deduplicating emails during ingestion → rejected (duplicates may represent campaign patterns)
+
+## Open Questions
+- Whether attachment indicators should later be extracted from MIME structure
+- How to handle multi-recipient emails in future detection correlation
+- Whether sender display names should be retained for phishing impersonation signals
+
+## Status
+- Phase Progress: Day 1 Completed
+- Repo Health: Stable and structured
+- Next Immediate Step: Day 2 — Ingestion hardening and validation checks
