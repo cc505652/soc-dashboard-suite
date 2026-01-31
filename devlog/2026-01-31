@@ -1,0 +1,36 @@
+# Dev Log — 2026-01-31
+
+## Phase
+Phase 4 — Detection Engineering (Day 7)
+
+## Work Completed
+- Implemented first detection: Suspicious Sender Domain
+- Detection logic identifies emails from:
+  - Rare domains
+  - First-seen domains
+  - External senders only
+- Recomputed `external_sender` at detection layer to avoid mutating upstream datasets
+- Applied severity mapping based on recipient user role (admin/executive = high, normal = medium)
+- Selected SOC-relevant evidence fields for alert output
+- Generated alert dataset and saved to `alerts_suspicious_sender.csv`
+
+## Key Decisions
+- Kept detection logic separate from enrichment layers to maintain pipeline integrity
+- Treated domain rarity and first-seen status as contextual risk indicators rather than standalone triggers
+- Used identity role as a severity multiplier instead of part of detection condition
+- Avoided retroactively modifying ingestion or enrichment outputs
+
+## Alternatives Considered
+- Embedding `external_sender` into earlier enrichment phase → rejected (breaks layer isolation)
+- Triggering alerts on rare domains alone → rejected (too noisy without external + first-seen logic)
+- Using frequency percentile thresholds instead of fixed rarity bands → deferred for tuning phase
+
+## Open Questions
+- What proportion of alerts is acceptable before tuning is required
+- Whether to suppress high-frequency marketing or SaaS domains later
+- How to combine this detection with temporal anomalies in future rules
+
+## Status
+- Phase Progress: First detection implemented successfully
+- Repo Health: Stable with first alert output dataset created
+- Next Immediate Step: Detection 02 — Temporal risk detection (off-hours high-risk email behavior)
