@@ -1,0 +1,31 @@
+# Dev Log — 2026-01-28
+
+## Phase
+Phase 3 — Context & Baselining (Day 4)
+
+## Work Completed
+- Calculated sender domain frequency distribution
+- Derived relative frequency ratios for each domain
+- Classified domains into rarity tiers (common / uncommon / rare)
+- Computed first-seen timestamp per sender domain
+- Flagged emails occurring on the first-seen day for each domain
+- Saved enriched dataset with domain context to `data/enriched/email_with_domain_context.csv`
+
+## Key Decisions
+- Chose frequency ratios over raw counts to remain dataset-size agnostic
+- Treated domain rarity as context only, not a detection trigger
+- Used date-level granularity for first-seen logic to avoid time precision issues
+
+## Alternatives Considered
+- Using static reputation lists → rejected (not dataset-driven)
+- Threshold tuning based on distribution percentiles → deferred (premature optimization)
+- Marking first-seen domains as immediate alerts → rejected (needs supporting signals)
+
+## Open Questions
+- Whether to later incorporate domain age or WHOIS-style metadata
+- How to combine domain rarity with sender authentication failures in detection logic
+
+## Status
+- Phase Progress: Day 4 Completed
+- Repo Health: Stable, with first contextual layer established
+- Next Immediate Step: Day 5 — Identity context and user-level baselining
