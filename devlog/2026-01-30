@@ -1,0 +1,36 @@
+# Dev Log — 2026-01-30
+
+## Phase
+Phase 3 — Context & Baselining (Day 6)
+
+## Work Completed
+- Derived temporal features from email event timestamps
+  - hour of day
+  - day of week
+- Implemented business-hours classification (weekday + 08:00–18:00 window)
+- Modeled per-user typical active hour using modal hour
+- Computed deviation between actual hour and user baseline hour
+- Classified temporal behavior into:
+  - normal_time
+  - off_hours
+  - unusual_hour
+- Saved enriched dataset with temporal context to `data/enriched/email_with_temporal_context.csv`
+
+## Key Decisions
+- Modeled time context as behavioral metadata rather than anomaly detection
+- Used modal hour to preserve dominant user behavior patterns
+- Treated business-hours violations as contextual risk modifiers, not alerts
+
+## Alternatives Considered
+- Using mean/median hour → rejected (less robust to multimodal patterns)
+- Immediate anomaly scoring → rejected (requires multi-context correlation first)
+- Hard-coded per-user schedules → rejected (not scalable or realistic)
+
+## Open Questions
+- Whether to later incorporate seasonal or monthly behavior patterns
+- How strongly temporal deviation should influence alert severity
+
+## Status
+- Phase Progress: Phase 3 Completed (Core context layers established)
+- Repo Health: Stable with multi-dimensional behavioral context
+- Next Immediate Step: Phase 4 — Begin detection engineering
