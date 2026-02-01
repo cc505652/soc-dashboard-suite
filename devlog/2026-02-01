@@ -1,0 +1,32 @@
+# Dev Log — 2026-02-01
+
+## Phase
+Phase 4 — Detection Engineering (Day 8)
+
+## Work Completed
+- Implemented Detection 02: High-Risk Email Timing
+- Detection logic identifies emails sent to privileged users (admin/executive)
+  during off-hours or unusual activity times
+- Combined identity context with temporal behavioral modeling
+- Generated alert dataset and saved to `alerts_high_risk_timing.csv`
+- Maintained separation between detection logic and upstream enrichment layers
+
+## Key Decisions
+- Treated identity sensitivity as primary risk driver
+- Modeled unusual timing as contextual signal rather than standalone anomaly
+- Assigned high severity to all alerts due to privileged user exposure
+- Avoided introducing domain or frequency logic into this detection
+
+## Alternatives Considered
+- Restricting detection to external senders → deferred for tuning stage
+- Requiring domain rarity in addition to time anomaly → deferred (multi-signal rule)
+- Using statistical anomaly scoring → rejected (favor explainable logic)
+
+## Open Questions
+- How this detection should be correlated with suspicious sender domain alerts
+- Whether to suppress alerts for users with globally distributed work schedules
+
+## Status
+- Phase Progress: Two detections implemented
+- Repo Health: Stable with layered, explainable detection rules
+- Next Immediate Step: Detection 03 — Multi-signal correlation rule
