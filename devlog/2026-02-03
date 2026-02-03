@@ -1,0 +1,36 @@
+# Dev Log — 2026-02-03
+
+## Phase
+Phase 4 — Detection Engineering (Day 10)
+
+## Work Completed
+- Implemented alert correlation pipeline to combine alerts from multiple detections
+- Merged outputs from:
+  - Suspicious Sender Domain
+  - High-Risk Email Timing
+  - Multi-Signal Email Risk
+- Created deduplication key based on event_time + sender + recipient
+- Applied severity-aware deduplication to retain highest-priority alert per event
+- Aggregated triggered detection rules into a single field for analyst context
+- Generated unified correlated alert dataset
+
+## Key Decisions
+- Treated alert correlation as a pipeline component rather than a detection rule
+- Used deterministic deduplication keys for reproducibility
+- Preserved multi-rule trigger information for analyst triage
+- Prioritized alerts using severity rather than arbitrary ordering
+
+## Alternatives Considered
+- Keeping duplicate alerts for each rule → rejected (analyst overload)
+- Using probabilistic scoring for deduplication → rejected (reduced explainability)
+- Merging detection logic earlier in pipeline → rejected (breaks modular design)
+
+## Open Questions
+- How correlated alerts should later be scored and prioritized
+- Whether alert frequency per user should influence prioritization
+- How cross-event correlation (campaign detection) could be modeled
+
+## Status
+- Phase Progress: Alert correlation pipeline implemented
+- Repo Health: Stable with unified SOC-style alert stream
+- Next Immediate Step: Alert scoring and prioritization
