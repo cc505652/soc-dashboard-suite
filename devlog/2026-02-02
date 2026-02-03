@@ -1,0 +1,33 @@
+# Dev Log — 2026-02-02
+
+## Phase
+Phase 4 — Detection Engineering (Day 9)
+
+## Work Completed
+- Implemented Detection 03: Multi-Signal Email Risk
+- Detection logic correlates:
+  - Rare or first-seen sender domains
+  - Off-hours or unusual timing
+  - Privileged recipient roles
+  - External sender condition
+- Generated high-confidence alert dataset and saved to `alerts_multi_signal_email_risk.csv`
+- Maintained strict separation between detection logic and enrichment layers
+
+## Key Decisions
+- Required all contextual signals to align to minimize false positives
+- Treated this rule as high-confidence and assigned critical severity
+- Modeled detection as explainable correlation rather than statistical anomaly
+
+## Alternatives Considered
+- Allowing detection to trigger on any two signals → rejected (too noisy)
+- Using scoring instead of boolean logic → deferred to future enhancement
+- Including user volume anomaly as additional signal → deferred
+
+## Open Questions
+- How this rule should be deduplicated with earlier detections
+- Whether domain reputation or URL signals should later augment this rule
+
+## Status
+- Phase Progress: Three detections implemented
+- Repo Health: Stable with layered and correlated detection logic
+- Next Immediate Step: Alert correlation and deduplication across detections
