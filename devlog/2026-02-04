@@ -1,0 +1,35 @@
+# Dev Log — 2026-02-04
+
+## Phase
+Phase 4 — Detection Engineering (Day 11)
+
+## Work Completed
+- Implemented alert scoring model for correlated alerts
+- Assigned base risk scores from severity levels
+- Increased risk score based on:
+  - number of triggered detection rules
+  - off-hours activity
+  - rare domain status
+  - first-seen domain indicator
+- Capped risk score to maintain bounded scale
+- Translated risk scores into SOC-style priority levels (P1–P4)
+- Generated prioritized alert queue
+
+## Key Decisions
+- Modeled prioritization as additive risk factors for explainability
+- Treated multi-signal detections as higher risk rather than separate rules
+- Ensured scoring remains interpretable rather than statistical black-box
+
+## Alternatives Considered
+- Using machine learning for scoring → rejected (reduces explainability)
+- Weighting time behavior more heavily → deferred for tuning phase
+- Using percentile-based scoring → rejected (dataset-dependent)
+
+## Open Questions
+- Whether priority thresholds should be tuned for alert volume constraints
+- How analyst feedback could later be used to adjust scoring weights
+
+## Status
+- Phase Progress: Alert prioritization implemented
+- Repo Health: Stable with SOC-style alert queue ready
+- Next Immediate Step: SOC dashboard design and visualization layer
