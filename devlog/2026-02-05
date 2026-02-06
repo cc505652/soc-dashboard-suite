@@ -1,0 +1,35 @@
+# Dev Log — 2026-02-05
+
+## Phase
+Phase 5 — SOC Dashboard Preparation (Day 12)
+
+## Work Completed
+- Generated aggregated datasets from prioritized alert stream for dashboard visualization
+- Created dashboard-ready metrics including:
+  - Alerts by priority (P1–P4 distribution)
+  - Alerts over time (daily alert volume)
+  - Alerts by detection rule (rule contribution analysis)
+  - Alerts by user role (identity exposure trends)
+  - Top risky sender domains (frequent alert sources)
+  - Priority vs detection rule matrix (severity-rule relationship)
+- Saved all dashboard datasets under `data/dashboard/`
+
+## Key Decisions
+- Used aggregated metrics instead of raw alerts to simulate real SOC monitoring dashboards
+- Designed outputs to support operational visibility rather than deep forensic analysis
+- Structured datasets to be tool-agnostic (usable in Streamlit, Power BI, or web dashboards)
+
+## Alternatives Considered
+- Visualizing directly inside notebooks → rejected (not portfolio-friendly)
+- Building dashboard before aggregation → rejected (would mix logic with UI)
+- Including raw alert logs in dashboard layer → rejected (too noisy and not SOC-realistic)
+
+## Open Questions
+- Which visualizations best demonstrate SOC effectiveness (trend vs severity vs identity)
+- Whether to add SLA-style metrics (time-to-triage simulation) later
+- How to simulate analyst workflow stages in dashboard
+
+## Status
+- Phase Progress: Dashboard data layer completed
+- Repo Health: Stable with detection pipeline and dashboard-ready outputs
+- Next Immediate Step: Build SOC dashboard UI to visualize detection performance
