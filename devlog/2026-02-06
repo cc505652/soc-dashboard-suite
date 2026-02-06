@@ -1,0 +1,36 @@
+# Dev Log — 2026-02-06
+
+## Phase
+Phase 5 — SOC Dashboard UI (Day 13)
+
+## Work Completed
+- Built Streamlit-based SOC dashboard interface
+- Integrated dashboard with aggregated SOC metrics generated in Phase 5 Day 12
+- Implemented visual panels for:
+  - Alerts by priority
+  - Alerts over time
+  - Alerts by detection rule
+  - Alerts by user role
+  - Top risky sender domains
+  - Priority vs detection rule correlation matrix
+- Verified dashboard renders correctly with local pipeline outputs
+
+## Key Decisions
+- Separated visualization layer from detection and analytics logic
+- Designed dashboard to reflect SOC monitoring priorities rather than generic charts
+- Focused on operational interpretability over visual complexity
+
+## Alternatives Considered
+- Building dashboard inside notebooks → rejected (not portfolio or SOC realistic)
+- Using raw alerts instead of aggregates → rejected (too noisy, not analyst-friendly)
+- Adding filtering controls immediately → deferred to enhancement phase
+
+## Open Questions
+- Whether to add interactive filters (date range, priority)
+- How to simulate analyst workflow or investigation drill-down
+- Whether to include SLA or response-time simulation metrics
+
+## Status
+- Phase Progress: SOC dashboard interface complete
+- Repo Health: Stable with full pipeline from ingestion → detection → dashboard
+- Next Immediate Step: Final project polish and portfolio presentation prep
