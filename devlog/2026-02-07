@@ -1,0 +1,30 @@
+# Dev Log — 2026-02-07
+
+## Phase
+Phase 2 — Multi-Source Telemetry Expansion (Step 1)
+
+## Work Completed
+- Extended SOC system design to support authentication telemetry alongside email events
+- Defined a normalized schema for authentication/login events
+- Created ingestion pipeline notebook for authentication telemetry
+- Established directory structure for raw and normalized authentication data
+- Aligned authentication schema with existing unified SOC event design
+
+## Key Decisions
+- Treated authentication logs as a second core telemetry source
+- Designed schema to prioritize identity, location, and login outcome fields
+- Maintained separation between ingestion, enrichment, and detection layers
+- Deferred detection logic until identity baselining is implemented
+
+## Why This Matters
+Adding authentication telemetry shifts the project from a single-source email detection system to a multi-source SOC monitoring platform. This enables future cross-signal detections such as login anomalies, credential compromise, and post-phishing activity.
+
+## Alternatives Considered
+- Adding detections immediately → rejected (identity context must be built first)
+- Using complex real-time streaming → deferred to later phase
+- Expanding to endpoint telemetry at this stage → postponed to maintain focus
+
+## Status
+- Phase Progress: Authentication telemetry foundation established
+- Repo Health: Stable, with structured expansion into identity security
+- Next Immediate Step: Build identity baselines and login behavior context
