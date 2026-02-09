@@ -1,0 +1,33 @@
+# Dev Log — 2026-02-09
+
+## Phase
+Phase 2 — Identity Threat Detection (Step 3)
+
+## Work Completed
+- Implemented authentication anomaly detections using enriched identity context
+- Built detection logic for:
+  - Unusual login times for privileged users
+  - Logins from previously unseen countries
+  - Successful login following recent failed attempt
+- Combined identity anomaly detections into unified authentication alert dataset
+- Structured alert outputs with detection ID, severity, and analyst-readable reason
+- Prepared identity alerts for future cross-signal correlation with email detections
+
+## Key Decisions
+- Used explainable rule-based detection rather than opaque anomaly models
+- Prioritized identity risk signals relevant to account compromise scenarios
+- Maintained separation between enrichment logic and detection logic
+- Treated synthetic authentication telemetry as a stand-in for real enterprise logs
+
+## Why This Matters
+This step expands the SOC system from email-based threat detection to identity security monitoring. It enables modeling of account compromise behavior and prepares the system for cross-correlation between phishing activity and suspicious login events.
+
+## Alternatives Considered
+- Using complex statistical anomaly scoring → rejected (reduced interpretability)
+- Implementing real-time streaming detections → deferred to later system phase
+- Adding device fingerprint anomaly detection → postponed for scope control
+
+## Status
+- Phase Progress: Identity anomaly detections implemented
+- Repo Health: Stable with dual-source detection (email + authentication)
+- Next Immediate Step: Cross-signal correlation between email and login alerts
