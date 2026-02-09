@@ -1,0 +1,31 @@
+# Dev Log — 2026-02-08
+
+## Phase
+Phase 2 — Identity Context Modeling (Step 2)
+
+## Work Completed
+- Generated synthetic authentication telemetry for SOC pipeline testing
+- Normalized login events into unified SOC schema
+- Built user behavioral baselines for login hour activity
+- Flagged unusual login times based on deviation from user baseline
+- Added first-seen country tracking for login location novelty
+- Created failed login indicator for future brute force and compromise detections
+- Saved enriched authentication dataset for detection phase
+
+## Key Decisions
+- Used explainable statistical baselines instead of black-box anomaly models
+- Modeled identity behavior as context enrichment rather than detection output
+- Kept enrichment layer separate from detection logic to preserve modular pipeline design
+
+## Why This Matters
+This step transforms raw login telemetry into behavioral identity signals. These signals enable future detection of compromised accounts, suspicious access patterns, and cross-correlation with phishing activity.
+
+## Alternatives Considered
+- Using complex ML anomaly detection → rejected (reduced interpretability)
+- Adding device fingerprint baselines → deferred to later enhancement phase
+- Modeling per-IP reputation → postponed to keep identity modeling focused
+
+## Status
+- Phase Progress: Identity behavioral context layer implemented
+- Repo Health: Stable with multi-source SOC telemetry (email + authentication)
+- Next Immediate Step: Implement login anomaly detections
