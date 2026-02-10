@@ -1,0 +1,29 @@
+# Dev Log — 2026-02-10
+
+## Phase
+Phase 2 — Multi-Source Correlation (Step 4)
+
+## Work Completed
+- Implemented cross-signal correlation between email threat alerts and authentication anomaly alerts
+- Standardized timestamps to resolve timezone mismatches across telemetry sources
+- Built identity resolution layer mapping email identities to internal user IDs
+- Injected controlled test login anomalies to validate correlation logic
+- Successfully generated cross-signal alerts representing potential post-phishing compromise scenarios
+
+## Key Decisions
+- Used identity directory mapping to enable cross-system correlation
+- Maintained time-window-based correlation logic to simulate real SOC workflows
+- Validated pipeline using controlled signal injection rather than relaxing detection thresholds
+
+## Why This Matters
+This step enables detection of multi-stage attacks, specifically phishing followed by suspicious account activity. It elevates the system from single-event detection to attack chain identification, which is a key capability of modern SOC platforms.
+
+## Alternatives Considered
+- Broadening time window to force matches → rejected (would reduce realism)
+- Correlating all email alerts → limited to high-priority alerts to maintain signal quality
+- Ignoring identity mismatches → implemented proper identity resolution instead
+
+## Status
+- Phase Progress: Cross-signal detection validated
+- Repo Health: Stable multi-source SOC detection pipeline
+- Next Immediate Step: Incident modeling and alert grouping
