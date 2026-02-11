@@ -1,0 +1,31 @@
+# Dev Log — 2026-02-11
+
+## Phase
+Phase 2 — Incident Modeling (Step 5)
+
+## Work Completed
+- Unified alerts from email, authentication, and cross-signal correlation layers
+- Standardized timestamps across all alert sources
+- Implemented SOC-style rolling investigation window (14 days)
+- Added per-user alert caps to simulate pipeline safety controls
+- Optimized incident grouping using a sliding time window algorithm
+- Generated structured incident dataset representing grouped SOC investigations
+
+## Key Decisions
+- Modeled incidents as time-bound clusters of alerts per user
+- Applied realistic operational constraints to maintain system performance
+- Replaced brute-force grouping with efficient linear traversal logic
+- Preserved modular separation between detection and incident layers
+
+## Why This Matters
+This step transitions the system from alert generation to SOC investigation modeling. It reflects how security operations teams handle alert volume by grouping related signals into actionable incidents.
+
+## Alternatives Considered
+- Processing full historical alert dataset → rejected (not SOC-realistic)
+- Using fixed alert count thresholds → time-based grouping chosen for realism
+- Ignoring performance constraints → added operational guardrails instead
+
+## Status
+- Phase Progress: Incident modeling layer implemented
+- System Capability: End-to-end SOC pipeline from telemetry to incidents
+- Next Immediate Step: Analyst investigation workflow modeling
