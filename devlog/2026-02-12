@@ -1,0 +1,30 @@
+# Dev Log — 2026-02-12
+
+## Phase
+Phase 2 — Analyst Investigation Workflow (Step 6)
+
+## Work Completed
+- Built investigation-ready incident summaries from SOC incident dataset
+- Implemented severity classification based on correlated alerts and alert volume
+- Generated human-readable investigation narratives for SOC analysts
+- Added recommended response actions aligned with incident severity
+- Produced structured investigation view dataset for dashboard consumption
+
+## Key Decisions
+- Treated correlated signals as highest risk indicators
+- Modeled investigation summaries as analyst-facing context rather than raw metrics
+- Linked response guidance directly to severity classification
+- Kept investigation logic separate from detection and incident modeling layers
+
+## Why This Matters
+This step introduces the human operational layer of the SOC. It bridges automated detection with analyst decision-making, which is a core component of real-world security operations platforms.
+
+## Alternatives Considered
+- Leaving incidents as raw grouped alerts → rejected (not SOC-realistic)
+- Using only numeric scoring → added narrative summaries for analyst usability
+- Embedding response logic inside detections → kept playbook-style recommendations separate
+
+## Status
+- Phase Progress: Analyst investigation workflow implemented
+- System Capability: End-to-end SOC pipeline from telemetry to analyst-ready cases
+- Next Immediate Step: Executive and SOC metrics dashboard layer
