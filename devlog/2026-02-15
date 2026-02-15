@@ -1,0 +1,53 @@
+### 📅 **Dev Log — 15 Feb 2026**
+
+**Phase:** Real-Time SOC Pipeline (Phase 3)
+**Focus Area:** Alert Streaming → Live Incident Correlation
+
+---
+
+#### ✅ Work Completed
+
+* Diagnosed schema collapse issue in `email_event_stream.csv` caused by unsafe CSV append operations during live simulation.
+* Reconfigured simulator write logic using explicit quoting and escape characters to preserve column integrity under streaming conditions.
+* Validated proper multi-column structure across:
+
+  * `email_event_stream.csv`
+  * `email_event_stream_enriched.csv`
+  * `email_detection_stream.csv`
+* Aligned detection engine to consume **enriched telemetry stream** instead of raw ingestion feed.
+* Implemented field mapping layer within detection loop to normalize alert schema for incident builder input:
+
+  * `event_time`
+  * `user_id` (mapped from `recipient_email`)
+  * `alert_source`
+  * `severity`
+* Resolved downstream incident builder blocking due to missing detection schema fields (e.g., `sender_domain` dependency).
+* Verified alert stream generation under live conditions (~9K+ processed detection events).
+* Established live alert ingestion compatibility for incident modeling pipeline.
+* Activated real-time incident builder to cluster alerts into correlated 48-hour user-level windows.
+* Confirmed incremental incident generation from live alert stream:
+
+  * Incident builder consuming detection output continuously
+  * ~1900+ alerts processed into incident candidates
+
+---
+
+#### 📊 Runtime Observations
+
+* Detection engine maintaining steady ingestion from enriched stream (9K+ processed events).
+* Incident builder actively clustering alerts into correlated timelines.
+* Incident creation progressing incrementally with alert stream growth.
+* File-based stream lag observed across pipeline layers due to polling intervals (2–3s), within expected tolerance.
+* No schema mismatch or datetime parsing failures observed post-stream write correction.
+
+---
+
+#### 📌 Status
+
+Real-time pipeline now supports:
+
+**Simulated Telemetry → Contextual Enrichment → Alert Detection → Live Incident Modeling**
+
+Streaming alerts are being successfully converted into user-scoped incident timelines under live ingestion conditions.
+
+Phase 3 incident correlation layer operational on streaming detection output.
