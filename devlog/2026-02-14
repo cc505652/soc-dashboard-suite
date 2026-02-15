@@ -1,0 +1,49 @@
+### 📅 **Dev Log — 14 Feb 2026**
+
+**Phase:** Real-Time SOC Pipeline (Phase 3)
+**Focus Area:** Live Stream → Enrichment → Detection Integration
+
+---
+
+#### ✅ Work Completed
+
+* Successfully initialized and ran the **real-time event stream simulator** to emulate live ingestion of ~495K email telemetry events.
+* Debugged CSV stream writing behavior to ensure consistent schema availability across consumer notebooks.
+* Implemented header initialization for enriched event stream to prevent downstream schema mismatch during real-time reads.
+* Fixed path misalignment between:
+
+  * raw stream output (`email_event_stream.csv`)
+  * enriched stream output (`email_event_stream_enriched.csv`)
+  * detection input source
+* Corrected datetime parsing issues in enrichment loop to safely process partially written stream rows.
+* Established consistent polling-based enrichment logic for:
+
+  * sender domain extraction
+  * first-seen timestamp calculation
+  * day-level novelty detection (`is_first_seen_day`)
+* Connected detection engine to enriched telemetry stream (instead of raw simulator output).
+* Verified end-to-end pipeline functionality:
+
+  * Simulator actively streaming events
+  * Enrichment incrementally processing contextual signals
+  * Detection consuming enriched events and generating alert candidates
+
+---
+
+#### 📊 Runtime Observations
+
+* Enrichment processing live events incrementally (1000+ events processed)
+* Detection engine polling enriched stream successfully (900+ events processed)
+* Detection lag behind enrichment observed as expected due to file-based polling interval (~2s)
+* Alert stream file (`email_detection_stream.csv`) being populated during runtime
+
+---
+
+#### 📌 Status
+
+Real-time telemetry ingestion → contextual enrichment → rule-based detection pipeline is operational on simulated live email traffic.
+
+Detection logic is now executing on enriched context rather than raw telemetry.
+
+Phase 3 pipeline chaining validated under live stream conditions.
+
